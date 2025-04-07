@@ -58,12 +58,12 @@ end
 --- Create and name a new terminal and open it. If exit_on_action is true, focus it.
 --- @param prompt_bufnr number The buffer number of the telescope prompt.
 --- @param exit_on_action boolean Whether to exit the telescope buffer when the action executes.
-function M.create_and_name_term(prompt_bufnr, exit_on_action)
+function M.create_and_name_term(prompt_bufnr, exit_on_action, default_name)
 	local float = toggleterm_config.get("direction") == "float"
 
 	local prompt = "Name terminal: "
 
-	vim.ui.input({ prompt = prompt }, function(name)
+	vim.ui.input({ prompt = prompt, default = default_name or "" }, function(name)
 		utils.clear_command_line()
 		if name and #name > 0 then
 			local term
